@@ -16,6 +16,7 @@ application {
 compileKotlin {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11
+        useIR = true
     }
 }
 
