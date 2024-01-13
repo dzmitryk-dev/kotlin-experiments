@@ -9,7 +9,7 @@ import kotlin.time.measureTime
 
 fun main() {
     println("Started")
-    val computationParameters = ComputationParameters(10000, 10000)
+    val computationParameters = ComputationParameters(15000, 15000)
 
     generateImage("SimpleMandelbrot", computationParameters, ::SimpleMandelbrot)
     generateImage("SimpleMandelbrotWithParallelStreams", computationParameters, ::SimpleMandelbrotWithParallelStreams)
