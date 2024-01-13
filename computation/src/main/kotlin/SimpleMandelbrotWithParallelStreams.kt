@@ -1,13 +1,19 @@
 import java.awt.image.DataBufferInt
+import java.util.stream.IntStream
 
-fun SimpleMandelbrot(
+fun SimpleMandelbrotWithParallelStreams(
     dataBuffer: DataBufferInt,
     computationParameters: ComputationParameters
 ) {
     val output = dataBuffer.data
     with(computationParameters) {
-        for (ix in 0 until width) {
-            for (iy in 0 until height) {
+        IntStream.range(0, width).mapToObj { ix ->
+            IntStream.range(0, height).mapToObj { iy ->
+                intArrayOf(ix, iy)
+            }
+        }.flatMap { it }
+            .parallel()
+            .forEach { (ix, iy) ->
                 val r = x0 + ix * (x1 - x0) / width
                 val i = y0 + iy * (y1 - y0) / height
 
@@ -32,7 +38,5 @@ fun SimpleMandelbrot(
                     output[iy * width + ix] = colorsMap[colorIndex]
                 }
             }
-        }
-
     }
 }
