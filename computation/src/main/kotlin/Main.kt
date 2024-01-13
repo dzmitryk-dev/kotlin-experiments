@@ -7,23 +7,9 @@ import java.io.File
 import javax.imageio.ImageIO
 import kotlin.time.measureTime
 
-private const val OPTION_OUTPUT = "o"
-
-fun main(args: Array<String>) {
-    val options = Options().apply {
-        addOption(
-            Option.builder(OPTION_OUTPUT)
-                .longOpt("output")
-                .argName("file")
-                .desc("output file")
-                .numberOfArgs(1)
-                .hasArg()
-                .required()
-                .build()
-        )
-    }
-
-    val computationParameters = ComputationParameters(5000, 5000)
+fun main() {
+    println("Started")
+    val computationParameters = ComputationParameters(10000, 10000)
 
     generateImage("SimpleMandelbrot", computationParameters, ::SimpleMandelbrot)
     generateImage("SimpleMandelbrotWithParallelStreams", computationParameters, ::SimpleMandelbrotWithParallelStreams)
@@ -38,8 +24,8 @@ private fun generateImage(
     computationParameters: ComputationParameters,
     computationFunction: (DataBufferInt, ComputationParameters) -> Unit
 ) {
+    val fileName = "$name.png"
     val time = measureTime {
-        val fileName = "$name.png"
 
         // Create and fill the memory object containing the color map
         val image = BufferedImage(computationParameters.width, computationParameters.height, TYPE_INT_RGB)
@@ -49,9 +35,7 @@ private fun generateImage(
         File(fileName).outputStream().use { outputStream ->
             ImageIO.write(image, "png", outputStream)
         }
-
-        println("Wrote image to $fileName")
     }
-    println("$name finished. Execution took $time")
+    println("$name finished. Wrote image to $fileName. Execution took $time")
 }
 
