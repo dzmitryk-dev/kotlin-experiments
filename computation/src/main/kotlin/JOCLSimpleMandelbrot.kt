@@ -110,7 +110,6 @@ fun JOCLSimpleMandelbrot(
         globalWorkSize[0] = width.toLong()
         globalWorkSize[1] = height.toLong()
 
-        val maxIterations = 250
         CL.clSetKernelArg(kernel, 0, Sizeof.cl_mem.toLong(), Pointer.to(pixelMem))
         CL.clSetKernelArg(kernel, 1, Sizeof.cl_uint.toLong(), Pointer.to(intArrayOf(width)))
         CL.clSetKernelArg(kernel, 2, Sizeof.cl_uint.toLong(), Pointer.to(intArrayOf(height)))

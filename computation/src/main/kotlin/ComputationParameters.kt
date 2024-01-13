@@ -28,6 +28,7 @@ data class ComputationParameters(
      * set should be computed
      */
     val y1: Float = 1.3f,
+    val maxIterations: Int = 250,
     val colorsMap: IntArray = initColorMap(32, Color.RED, Color.GREEN, Color.BLUE)
 ) {
     override fun equals(other: Any?): Boolean {
