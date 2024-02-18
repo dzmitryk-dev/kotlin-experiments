@@ -8,17 +8,17 @@ repositories {
 }
 
 kotlin {
-    macosX64("native") { // on macOS
+    macosX64("macNative") { // on macOS
         binaries {
             executable()
         }
     }
-    linuxX64("native") {     // on Linux
+    linuxX64("linuxNative") {     // on Linux
         binaries {
             executable()
         }
     }
-    mingwX64("native") {// on Windows
+    mingwX64("winNative") {// on Windows
         binaries {
             executable()
         }
