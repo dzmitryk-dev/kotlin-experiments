@@ -5,4 +5,5 @@ rootProject.name = "Kotlin Experiments"
 
 include 'coroutines'
 include 'computation'
+include 'native'
 
