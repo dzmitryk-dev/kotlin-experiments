@@ -1,4 +1,4 @@
-import org.apache.commons.cli.*
+
 import java.awt.image.BufferedImage
 import java.awt.image.BufferedImage.TYPE_INT_RGB
 import java.awt.image.DataBufferInt
@@ -8,8 +8,9 @@ import javax.imageio.ImageIO
 import kotlin.time.measureTime
 
 fun main() {
-    println("Started")
     val computationParameters = ComputationParameters(15000, 15000)
+
+    println("Started with parameters $computationParameters")
 
     generateImage("SimpleMandelbrot", computationParameters, ::SimpleMandelbrot)
     generateImage("SimpleMandelbrotWithParallelStreams", computationParameters, ::SimpleMandelbrotWithParallelStreams)
@@ -24,6 +25,7 @@ private fun generateImage(
     computationParameters: ComputationParameters,
     computationFunction: (DataBufferInt, ComputationParameters) -> Unit
 ) {
+    println("$name started.")
     val fileName = "$name.png"
     val time = measureTime {
 
