@@ -7,4 +7,4 @@ include 'coroutines'
 include 'computation'
 include 'native'
 include 'jmh-tests'
-
+include 'wasi-example'
