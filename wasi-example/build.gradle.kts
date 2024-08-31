@@ -7,7 +7,6 @@ import org.jetbrains.kotlin.gradle.testing.internal.KotlinTestReport
 
 plugins {
     kotlin("multiplatform")
-    // kotlin("multiplatform") version "2.0.0-Beta1"
     id("de.undercouch.download") version "5.6.0"
 }
 
@@ -178,9 +177,9 @@ kotlin {
 // Note, with this option the compiler will generate `unreachable` instruction instead of throw, 
 // and a Wasm module will stop execution in this case.
 //
-// tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile>().configureEach {
-//     kotlinOptions.freeCompilerArgs += listOf("-Xwasm-use-traps-instead-of-exceptions")
-// }
+tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile>().configureEach {
+    kotlinOptions.freeCompilerArgs += listOf("-Xwasm-use-traps-instead-of-exceptions")
+}
 
 rootProject.the<NodeJsRootExtension>().apply {
     nodeVersion = "22.0.0-nightly202404032241e8c5b3"
