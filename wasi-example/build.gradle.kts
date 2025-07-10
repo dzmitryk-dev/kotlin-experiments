@@ -28,9 +28,9 @@ val currentOsType = run {
         else -> OsName.UNKNOWN
     }
 
-    val osArch = when (providers.systemProperty("sun.arch.data.model").forUseAtConfigurationTime().get()) {
+    val osArch = when (providers.systemProperty("sun.arch.data.model").get()) {
         "32" -> OsArch.X86_32
-        "64" -> when (providers.systemProperty("os.arch").forUseAtConfigurationTime().get().toLowerCase()) {
+        "64" -> when (providers.systemProperty("os.arch").get().lowercase()) {
             "aarch64" -> OsArch.ARM64
             else -> OsArch.X86_64
         }
@@ -51,7 +51,7 @@ val unzipDeno = run {
     }
     val denoLocation = "$denoDirectory/deno-$denoSuffix.zip"
 
-    val downloadedTools = File(buildDir, "tools")
+    val downloadedTools = layout.buildDirectory.asFile.get().resolve("tools")
 
     val downloadDeno = tasks.register("denoDownload", Download::class) {
         src(denoLocation)
@@ -156,14 +156,12 @@ fun Project.createDenoExec(
     }
 }
 
-
-
+@OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
 kotlin {
     wasmWasi {
         nodejs()
         binaries.executable()
     }
-
     sourceSets {
         val wasmWasiTest by getting {
             dependencies {
@@ -178,12 +176,7 @@ kotlin {
 // and a Wasm module will stop execution in this case.
 //
 tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile>().configureEach {
-    kotlinOptions.freeCompilerArgs += listOf("-Xwasm-use-traps-instead-of-exceptions")
-}
-
-rootProject.the<NodeJsRootExtension>().apply {
-    nodeVersion = "22.0.0-nightly202404032241e8c5b3"
-    nodeDownloadBaseUrl = "https://nodejs.org/download/nightly"
+    compilerOptions.freeCompilerArgs.add("-Xwasm-use-traps-instead-of-exceptions")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask>().configureEach {

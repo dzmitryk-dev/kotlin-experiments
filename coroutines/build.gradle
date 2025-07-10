@@ -1,10 +1,14 @@
 plugins {
-    id 'application'
-    id 'kotlin'
+    id("application")
+    alias(libs.plugins.kotlin)
 }
 
 application {
     mainClass = 'MainKt'
+}
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {

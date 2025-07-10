@@ -28,7 +28,7 @@ fun consecutive() = runBlocking {
 fun parallel() = runBlocking {
     println("Start parallel")
     timeOf("parallel") {
-        withContext(Dispatchers.IO) {
+        withContext(Dispatchers.Default) {
             launch {
                 timeOf("DummyFibonachi") {
                     println(dummyFibonachi().take(10).joinToString(", ", "[", "]") { "$it" })
