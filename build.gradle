@@ -1,15 +1,7 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+// Top-level build file for composite build coordination
 plugins {
-    alias(libs.plugins.kotlin)
+    alias(libs.plugins.kotlin) apply false
 }
 
-allprojects {
-    repositories {
-        mavenCentral()
-        google()
-    }
-
-    kotlin {
-        jvmToolchain(21)
-    }
-}
+// Root project doesn't need much configuration in a composite build
+// Each included build is self-contained and independent

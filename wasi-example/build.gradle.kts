@@ -6,11 +6,12 @@ import org.jetbrains.kotlin.gradle.targets.js.testing.KotlinJsTest
 import org.jetbrains.kotlin.gradle.testing.internal.KotlinTestReport
 
 plugins {
-    kotlin("multiplatform")
+    kotlin("multiplatform") version libs.versions.kotlin.get()
     id("de.undercouch.download") version "5.6.0"
 }
 
 repositories {
+    google()
     mavenCentral()
 }
 

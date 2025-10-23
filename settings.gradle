@@ -3,10 +3,10 @@ plugins {
 }
 rootProject.name = "kotlin-experiments"
 
-include 'coroutines'
-include 'computation'
-include 'native'
-include 'jmh-tests'
-include 'wasi-example'
-
-include 'collection-processing'
+// Include all subprojects as composite builds
+includeBuild 'coroutines'
+includeBuild 'computation'
+includeBuild 'native'
+includeBuild 'jmh-tests'
+includeBuild 'wasi-example'
+includeBuild 'collection-processing'

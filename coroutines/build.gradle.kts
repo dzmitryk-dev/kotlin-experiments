@@ -4,7 +4,7 @@ plugins {
 }
 
 application {
-    mainClass = 'MainKt'
+    mainClass = "MainKt"
 }
 
 repositories {
@@ -12,9 +12,13 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 }
 
-test {
+tasks.test {
     useJUnitPlatform()
+}
+
+kotlin {
+    jvmToolchain(21)
 }

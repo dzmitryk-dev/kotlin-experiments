@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm")
+    alias(libs.plugins.kotlin)
     alias(libs.plugins.jmh.gradle)
 }
 
@@ -8,6 +8,7 @@ version = "unspecified"
 
 repositories {
     mavenCentral()
+    google()
 }
 
 dependencies {

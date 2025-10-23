@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm")
+    alias(libs.plugins.kotlin)
     alias(libs.plugins.kotlinx.benchmark)
 }
 
@@ -8,6 +8,7 @@ version = "unspecified"
 
 repositories {
     mavenCentral()
+    google()
 }
 
 dependencies {
@@ -17,6 +18,10 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+kotlin {
+    jvmToolchain(21)
 }
 
 benchmark {

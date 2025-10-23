@@ -1,10 +1,12 @@
 // build.gradle.kts
 plugins {
-    kotlin("multiplatform")
+    alias(libs.plugins.kotlin) apply false
+    kotlin("multiplatform") version libs.versions.kotlin.get()
 }
 
 repositories {
     mavenCentral()
+    google()
 }
 
 kotlin {

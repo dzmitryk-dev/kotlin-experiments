@@ -1,6 +1,6 @@
 plugins {
     id("application")
-    kotlin("jvm")
+    alias(libs.plugins.kotlin)
 }
 
 application {
@@ -9,6 +9,7 @@ application {
 
 repositories {
     mavenCentral()
+    google()
 }
 
 dependencies {
