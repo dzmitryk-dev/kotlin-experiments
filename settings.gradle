@@ -4,9 +4,9 @@ plugins {
 rootProject.name = "kotlin-experiments"
 
 // Include all subprojects as composite builds
+includeBuild 'benchmarks-jmh'
+includeBuild 'benchmarks-kotlinx'
 includeBuild 'coroutines'
 includeBuild 'computation'
 includeBuild 'native'
-includeBuild 'jmh-tests'
 includeBuild 'wasi-example'
-includeBuild 'collection-processing'
