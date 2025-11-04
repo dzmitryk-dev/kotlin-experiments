@@ -27,6 +27,9 @@ private fun generateImage(
 ) {
     println("$name started.")
     val fileName = "$name.png"
+    val outputDir = File("output")
+    outputDir.mkdirs()
+    
     val time = measureTime {
 
         // Create and fill the memory object containing the color map
@@ -34,10 +37,10 @@ private fun generateImage(
 
         computationFunction(image.raster.dataBuffer as DataBufferInt, computationParameters)
 
-        File(fileName).outputStream().use { outputStream ->
+        File(outputDir, fileName).outputStream().use { outputStream ->
             ImageIO.write(image, "png", outputStream)
         }
     }
-    println("$name finished. Wrote image to $fileName. Execution took $time")
+    println("$name finished. Wrote image to output/$fileName. Execution took $time")
 }
 
